@@ -1,0 +1,38 @@
+<!-- {{str}}
+<view wx:for="{{arr}}" 
+wx:for-item="itemName" 
+wx:key="index">
+  {{itemName}}---{{index}}
+</view>
+<view wx:if="{{num>0}}">num大于0</view>
+<view wx:elif="{{num<0}}">num小于0</view>
+<view wx:else>num等于0</view> -->
+<!-- 使用 wx:for-item 可以指定数组当前元素的变量名，
+使用 wx:for-index 可以指定数组当前下标的变量名
+wx:key 来指定列表中项目的唯一的标识符
+使用 wx:if="" 来判断是否需要渲染该代码块,也可以用 wx:elif 和 wx:else 来添加一个else块 -->
+
+<!-- <view wx:for="{{objArr}}">
+  <view>姓名：{{item.name}}</view>
+  <view>年龄：{{item.age}}</view>
+</view> -->
+<!-- <block/>并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性 -->
+<!-- <block wx:for="{{objArr}}">
+  <view>姓名：{{item.name}}</view>
+  <view>年龄：{{item.age}}</view>
+</block> -->
+
+<!-- <template name="tem1">
+  <view>姓名：{{name}}</view>
+  <view>年龄：{{age}}</view>
+</template> -->
+<import src="./tem.wxml"/>
+<view wx:for="{{objArr}}" wx:key="index">
+  <template is="tem1" data="{{...item}}"></template>
+</view>
+
+<template is="tem1" data="{{name:'aaaa',age:22}}"></template>
+
+<button bindtap="goPageOne" size="default" type="primary">pageone</button>
+<!-- bindtap:点击事件 -->
+<view class="box"></view>

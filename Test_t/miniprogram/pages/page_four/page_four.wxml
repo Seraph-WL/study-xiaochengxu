@@ -1,0 +1,28 @@
+<input bindinput="saveInfo" placeholder="请输入待办事项" />
+<button type="primary" bindtap="addHandle">添加</button>
+<view>
+  <switch checked="{{isDone}}" bindchange="switchDone"/>
+  <text wx:if="{{isDone}}">已完成</text>
+  <text wx:else>未完成</text>
+</view>
+<view class="todo_list">
+ <view class="todo_index">序号</view>
+ <view class="todo_title">待办事项</view>
+ <view class="todo_control">操作</view>
+</view>
+
+<checkbox-group bindchange="checkboxChange">
+<view class="todo_list" wx:for="{{todoList}}" wx:key="_id">
+ <view class="todo_index">
+  <checkbox value="{{item._id}}" />
+ </view>
+ <view class="todo_title">{{item.title}}</view>
+ <view class="todo_control">
+  <button wx:if="{{item.isDone}}" size="mini" type="warn">删除</button>
+  <button wx:else size="mini" data-id="{{item._id}}" bindtap="setDone" type="primary">完成</button>
+ </view>
+</view>
+</checkbox-group>
+
+<button bindtap="delCheck" wx:if="{{isDone}}" type="warn">标记删除</button>
+<button bindtap="doneCheck"  wx:else type="primary">标记完成</button>
